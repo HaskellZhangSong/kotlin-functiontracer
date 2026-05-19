@@ -42,10 +42,18 @@ kotlin {
         // This avoids a compileUnixMainKotlinMetadata step entirely.
         // Note: androidNativeMain is safe here because only 64-bit targets remain
         // (androidNativeArm64, androidNativeX64) so pthread_t is uniformly 64-bit.
+        // src/unixMain/kotlin holds shared POSIX code (TraceLog) for all unix targets.
         val unixSrcDir = "src/unixMain/kotlin"
         appleMain.get().kotlin.srcDir(unixSrcDir)
         linuxMain.get().kotlin.srcDir(unixSrcDir)
         androidNativeMain.get().kotlin.srcDir(unixSrcDir)
+
+        // ThreadId has per-family implementations because pthread_t is an opaque
+        // pointer on Darwin (needs pthread_mach_thread_np) but ULong on Linux/Android.
+        // src/appleMain/kotlin already resolves via the default hierarchy srcDir.
+        val linuxAndroidSrcDir = "src/linuxAndroidMain/kotlin"
+        linuxMain.get().kotlin.srcDir(linuxAndroidSrcDir)
+        androidNativeMain.get().kotlin.srcDir(linuxAndroidSrcDir)
         // mingwX64 uses its own stub in src/mingwMain/kotlin (no pthreads).
     }
 }
