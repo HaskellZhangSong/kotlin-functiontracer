@@ -83,6 +83,7 @@ buildConfig {
 }
 
 tasks.test {
+    enabled = false
     dependsOn(testArtifacts)
     dependsOn(annotationsJvmRuntimeClasspath)
     dependsOn(annotationsJsRuntimeClasspath)

@@ -31,13 +31,13 @@ kotlin {
             implementation("dev.songzh.functiontracer:plugin-annotations:0.1.0-SNAPSHOT")
         }
 
-        val nativeMain by creating {
-            dependsOn(commonMain.get())
-        }
-
-        val macosArm64Main by getting { dependsOn(nativeMain) }
-        val linuxArm64Main by getting { dependsOn(nativeMain) }
-        val linuxX64Main   by getting { dependsOn(nativeMain) }
+        // POSIX (pthread) code lives in src/unixMain/kotlin and is added as a
+        // srcDir to every target instead of an intermediate source set, so it is
+        // never compiled as common metadata (which cannot see platform.posix).
+        val unixSrcDir = "src/unixMain/kotlin"
+        macosArm64Main.get().kotlin.srcDir(unixSrcDir)
+        linuxArm64Main.get().kotlin.srcDir(unixSrcDir)
+        linuxX64Main.get().kotlin.srcDir(unixSrcDir)
     }
 }
 

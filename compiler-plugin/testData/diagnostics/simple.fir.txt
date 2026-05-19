@@ -1,0 +1,4 @@
+FILE: simple.kt
+    @R|dev/songzh/functiontracer/Trace|() public final fun add(a: R|kotlin/Int|, b: R|kotlin/Int|): R|kotlin/Int| {
+        ^add R|<local>/a|.R|kotlin/Int.plus|(R|<local>/b|)
+    }

@@ -1,0 +1,12 @@
+FILE: simple.kt
+    @R|dev/songzh/functiontracer/Trace|() public final fun greet(name: R|kotlin/String|): R|kotlin/String| {
+        ^greet <strcat>(String(Hello, ), R|<local>/name|, String(!))
+    }
+    public final fun box(): R|kotlin/String| {
+        lval result: R|kotlin/String| = R|/greet|(String(world))
+        ^box when () {
+            ==(R|<local>/result|, String(Hello, world) ).<Unresolved name: OK>#(String( else )).<Unresolved name: Fail>#(ERROR_EXPR(No right operand))) ->  {
+            }
+        }
+
+    }

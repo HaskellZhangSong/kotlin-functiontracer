@@ -1,12 +1,12 @@
+public final class dev/songzh/functiontracer/ThreadIdKt {
+	public static final fun traceCurrentThreadId ()Ljava/lang/String;
+}
+
 public abstract interface annotation class dev/songzh/functiontracer/Trace : java/lang/annotation/Annotation {
 }
 
 public final class dev/songzh/functiontracer/TraceLogKt {
 	public static final fun closeTraceLog ()V
 	public static final fun traceLog (Ljava/lang/String;Ljava/lang/String;)V
-}
-
-public final class dev/songzh/functiontracer/ThreadIdKt {
-	public static final fun traceCurrentThreadId ()Ljava/lang/String;
 }
 
